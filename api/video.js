@@ -94,7 +94,7 @@ module.exports = async (req, res) => {
     {    
         if(cache.has(videoId))
         {
-            reply.send(cache.get(videoId));
+            res.send(cache.get(videoId));
         }else{
           
     
@@ -106,7 +106,7 @@ module.exports = async (req, res) => {
 
                     setTimeout(()=>{
                         cache.delete(videoId);
-                    },1000 * 60 * 60)
+                    },1000 * 60)
 
                     var source =result.data;
                     var  first = source.indexOf('ytInitialPlayerResponse = {'); 
