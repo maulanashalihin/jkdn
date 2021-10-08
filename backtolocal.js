@@ -27,7 +27,7 @@ function fromDir(startPath,filter){
                 const data = fs.readFileSync(filename)
                 //file written successfully
                  
-                let result = data.toString().replace('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdnmovie'+version+'/dist/assets/css/main.css" />','<link rel="stylesheet" href="./assets/css/main.css" />')
+                let result = data.toString().replace('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie'+version+'/dist/assets/css/main.css" />','<link rel="stylesheet" href="./assets/css/main.css" />')
 
                  fs.writeFileSync(filename,result)
               } catch (err) {
