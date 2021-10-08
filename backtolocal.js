@@ -27,7 +27,7 @@ function fromDir(startPath,filter){
                 const data = fs.readFileSync(filename)
                 //file written successfully
                  
-                let result = data.toString().split('http://localhost:4343').join('https://cdn.jsdelivr.net/npm/jkdn-movie'+version+'/dist')
+                let result = data.toString().split('https://cdn.jsdelivr.net/npm/jkdn-movie'+version+'/dist').join('http://localhost:4343')
 
                  fs.writeFileSync(filename,result)
               } catch (err) {
