@@ -4,10 +4,10 @@
   "description": "A tailwindcss boilerplate that makes development easy.",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production  postcss src/css/tailwind.css -o dist/assets/css/main.css",
+    "build": "postcss src/css/tailwind.css -o dist/assets/css/main.css",
     "watch": "postcss src/css/tailwind.css -o dist/assets/css/main.css --watch",
     "serve": "cross-env NODE_ENV=development concurrently \"postcss src/css/tailwind.css -o dist/assets/css/main.css --watch\" \" node backtolocal.js \"  \"instant -p 4343 ./dist\"",
-    "dev": "cross-env NODE_ENV=development postcss src/css/tailwind.css -o dist/assets/css/main.css",
+    "dev": "  ",
     "prod": "cross-env NODE_ENV=production concurrently \" postcss src/css/tailwind.css -o dist/assets/css/main.css \" \" node changetocdn.js \" ",
     "start": "npm run serve"
   },
@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^10.1.0",
+    "crypto-js": "^4.1.1",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
