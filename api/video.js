@@ -82,58 +82,58 @@ function makeUrl(format) {
 
     }
 }
-exports.handler =  async (event, context) => {
+
+module.exports = async (req, res) => {
   
     
-    let chiperVideoId = event.queryStringParameters.videoId;
+    let chiperVideoId = req.query.videoId;
     var bytes  = CryptoJS.AES.decrypt(chiperVideoId, 'demokrasi mati khilafah berjaya');
     var videoId = bytes.toString(CryptoJS.enc.Utf8);
-
- 
     
     if(videoId)
     {    
        
-        let result =  await axios.get('https://www.youtube.com/watch?v=' + videoId, {
-            headers: {
-                'Accept-Language': 'id',
-            }
-        });
+    
+            axios.get('https://www.youtube.com/watch?v=' + videoId, {
+                headers: {
+                    'Accept-Language': 'id',
+                }
+            }).then(result => { 
 
-        setTimeout(()=>{
-            cache.delete(videoId);
-        },1000 * 10)
+                    setTimeout(()=>{
+                        cache.delete(videoId);
+                    },1000 * 10)
 
-        var source =result.data;
-        var  first = source.indexOf('ytInitialPlayerResponse = {'); 
-        var second = source.indexOf('};',first); 
-        var three = source.substring(first+26,second+1)   
-        var data = JSON.parse(three)
+                    var source =result.data;
+                    var  first = source.indexOf('ytInitialPlayerResponse = {'); 
+                    var second = source.indexOf('};',first); 
+                    var three = source.substring(first+26,second+1)   
+                    var data = JSON.parse(three)
 
-        
-        // data.streamingData.adaptiveFormats.forEach(format => {
-        //     makeUrl(format)
-        // });
-        data.streamingData.formats.forEach(format => {
-            makeUrl(format)
-        });
+                    
+                    // data.streamingData.adaptiveFormats.forEach(format => {
+                    //     makeUrl(format)
+                    // });
+                    data.streamingData.formats.forEach(format => {
+                        makeUrl(format)
+                    });
 
 
-        let send = data.streamingData.formats;
-        cache.set(videoId, send); 
-        
-        return {
-            statusCode: 200,
-            body:  JSON.stringify(send)
-        };
+                    let send = data.streamingData.formats;
+                    cache.set(videoId, send);
+
+                  
+                    
+                    res.send(send)
+
+
+                },error=>{
+                    res.send("error guys")
+                })
 
        
     }else{
-      
-        return {
-            statusCode: 200,
-            body: '[]'
-        };
+        res.send('[]')
     }
  
 

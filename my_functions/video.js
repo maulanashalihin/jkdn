@@ -1,4 +1,6 @@
-var CryptoJS = require("crypto-js");
+
+
+  var CryptoJS = require("crypto-js");
 const axios = require('axios');
   
 const querystring = require('querystring');
@@ -82,58 +84,58 @@ function makeUrl(format) {
 
     }
 }
-
-module.exports = async (req, res) => {
+exports.handler =  async (event, context) => {
   
     
-    let chiperVideoId = req.query.videoId;
+    let chiperVideoId = event.queryStringParameters.videoId;
     var bytes  = CryptoJS.AES.decrypt(chiperVideoId, 'demokrasi mati khilafah berjaya');
     var videoId = bytes.toString(CryptoJS.enc.Utf8);
+
+ 
     
     if(videoId)
     {    
        
-    
-            axios.get('https://www.youtube.com/watch?v=' + videoId, {
-                headers: {
-                    'Accept-Language': 'id',
-                }
-            }).then(result => { 
+        let result =  await axios.get('https://www.youtube.com/watch?v=' + videoId, {
+            headers: {
+                'Accept-Language': 'id',
+            }
+        });
 
-                    setTimeout(()=>{
-                        cache.delete(videoId);
-                    },1000 * 10)
+        setTimeout(()=>{
+            cache.delete(videoId);
+        },1000 * 10)
 
-                    var source =result.data;
-                    var  first = source.indexOf('ytInitialPlayerResponse = {'); 
-                    var second = source.indexOf('};',first); 
-                    var three = source.substring(first+26,second+1)   
-                    var data = JSON.parse(three)
+        var source =result.data;
+        var  first = source.indexOf('ytInitialPlayerResponse = {'); 
+        var second = source.indexOf('};',first); 
+        var three = source.substring(first+26,second+1)   
+        var data = JSON.parse(three)
 
-                    
-                    // data.streamingData.adaptiveFormats.forEach(format => {
-                    //     makeUrl(format)
-                    // });
-                    data.streamingData.formats.forEach(format => {
-                        makeUrl(format)
-                    });
-
-
-                    let send = data.streamingData.formats;
-                    cache.set(videoId, send);
-
-                  
-                    
-                    res.send(send)
+        
+        // data.streamingData.adaptiveFormats.forEach(format => {
+        //     makeUrl(format)
+        // });
+        data.streamingData.formats.forEach(format => {
+            makeUrl(format)
+        });
 
 
-                },error=>{
-                    res.send("error guys")
-                })
+        let send = data.streamingData.formats;
+        cache.set(videoId, send); 
+        
+        return {
+            statusCode: 200,
+            body:  JSON.stringify(send)
+        };
 
        
     }else{
-        res.send('[]')
+      
+        return {
+            statusCode: 200,
+            body: '[]'
+        };
     }
  
 
