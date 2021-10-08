@@ -2,6 +2,7 @@ var path = require('path'), fs=require('fs');
 
 var pkg = require("./package.json")
 
+
 const version = "@"+pkg.version;
 
 function fromDir(startPath,filter){
@@ -27,7 +28,7 @@ function fromDir(startPath,filter){
                 const data = fs.readFileSync(filename)
                 //file written successfully
                  
-                let result = data.toString().replace('<link rel="stylesheet" href="./assets/css/main.css" />','<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie'+version+'/dist/assets/css/main.css" />')
+                let result = data.toString().split('http://localhost:4343').join('https://cdn.jsdelivr.net/npm/jkdn-movie'+version+'/dist')
 
                  fs.writeFileSync(filename,result)
               } catch (err) {
