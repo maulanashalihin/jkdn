@@ -89,6 +89,11 @@ module.exports = async (event, context) => {
     let chiperVideoId = event.queryStringParameters.videoId;
     var bytes  = CryptoJS.AES.decrypt(chiperVideoId, 'demokrasi mati khilafah berjaya');
     var videoId = bytes.toString(CryptoJS.enc.Utf8);
+
+    return {
+        statusCode: 200,
+        body:  videoId
+    };
     
     if(videoId)
     {    
