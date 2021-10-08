@@ -94,48 +94,46 @@ module.exports = async (event, context) => {
     {    
        
     
-            axios.get('https://www.youtube.com/watch?v=' + videoId, {
+            try {
+                let result =  await axios.get('https://www.youtube.com/watch?v=' + videoId, {
                 headers: {
                     'Accept-Language': 'id',
                 }
-            }).then(result => { 
+            });
 
-                    setTimeout(()=>{
-                        cache.delete(videoId);
-                    },1000 * 10)
+            setTimeout(()=>{
+                cache.delete(videoId);
+            },1000 * 10)
 
-                    var source =result.data;
-                    var  first = source.indexOf('ytInitialPlayerResponse = {'); 
-                    var second = source.indexOf('};',first); 
-                    var three = source.substring(first+26,second+1)   
-                    var data = JSON.parse(three)
+            var source =result.data;
+            var  first = source.indexOf('ytInitialPlayerResponse = {'); 
+            var second = source.indexOf('};',first); 
+            var three = source.substring(first+26,second+1)   
+            var data = JSON.parse(three)
 
-                    
-                    // data.streamingData.adaptiveFormats.forEach(format => {
-                    //     makeUrl(format)
-                    // });
-                    data.streamingData.formats.forEach(format => {
-                        makeUrl(format)
-                    });
-
-
-                    let send = data.streamingData.formats;
-                    cache.set(videoId, send);
-
-                  
-                     
-                    return {
-                        statusCode: 200,
-                        body:  JSON.stringify(send)
-                    };
+            
+            // data.streamingData.adaptiveFormats.forEach(format => {
+            //     makeUrl(format)
+            // });
+            data.streamingData.formats.forEach(format => {
+                makeUrl(format)
+            });
 
 
-                },error=>{
-                    return {
-                        statusCode: 200,
-                        body: '[]'
-                    };
-                })
+            let send = data.streamingData.formats;
+            cache.set(videoId, send); 
+            
+            return {
+                statusCode: 200,
+                body:  JSON.stringify(send)
+            };
+
+            } catch (error) {
+                  return {
+                statusCode: 200,
+                body:  JSON.stringify(send)
+            };
+            }
 
        
     }else{
