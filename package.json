@@ -7,7 +7,6 @@
  
     "watch": "postcss src/css/tailwind.css -o dist/assets/css/main.css --watch",
     "serve": "cross-env NODE_ENV=development concurrently \"postcss src/css/tailwind.css -o dist/assets/css/main.css --watch\" \" node backtolocal.js \"  \"instant -p 4343 ./dist\"",
- 
     "prod": "cross-env NODE_ENV=production concurrently \" postcss src/css/tailwind.css -o dist/assets/css/main.css \" \" node changetocdn.js \" ",
     "start": "npm run serve"
   },
