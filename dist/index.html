@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdnmovie@1.0.0/dist/assets/css/main.css" />
   <title>Jejak Khilafah di Nusantara</title>
   <style>
     .bg-image-cover {
@@ -27,7 +27,7 @@
           <div class=" ">
             <img src="/assets/imgs/judul.png" alt="">
             <div class="text-white text-3xl font-bold mt-14">
-              The Guilty
+              Jejak Khilafah di Nusantara
             </div>
             <div class="text-gray-400 mt-3">
               2021 | 16+ | 1h 31m | Thriller Movies
@@ -50,10 +50,38 @@
   <div class="relative w-full mt-10">
     <div class="   max-w-screen-2xl mx-auto px-4 sm:px-6 ">
       <div class=" ">
-        <iframe width="100%" height="315" id="video-youtube" class="" src="https://www.youtube.com/embed/EUN15mgt7Uc"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+        <section class="nmtitle-section section-additional-videos" id="section-additional-videos"
+          data-uia="section-additional-videos">
+          <div class="section-header flex text-4xl mb-5" data-uia="section-header">
+            <h2 class="section-header-text section-item text-white" data-uia="section-header-text">Videos</h2>
+            <h2
+              class="section-subheader-text section-item text-gray-400  ml-3 pl-5 mt-2 border-l border-gray-400 text-2xl"
+              data-uia="section-subheader-text">Jejak Khilafah di Nusantara</h2>
+          </div>
+          <div class="nm-content-horizontal-row " aria-hidden="false">
+            <ul class="nm-content-horizontal-row-item-container grid gap-4 md:grid-cols-3">
+              <li class="nm-content-horizontal-row-item">
+                <div class="additional-video-wrapper" data-uia="additional-video-wrapper">
+                 <a href="/jkdn1.html">
+                  <img src="/assets/imgs/jkdn1.jpeg" alt="">
+                  <button class="additional-video"><span class="additional-video-image-wrapper" alt=""
+                      role="presentation" class="additional-video-image-preloader" loading="lazy"> <svg
+                        viewBox="0 0 50 50" class="  -mt-20 ml-5 h-14" data-uia="additional-video-play-icon">
+                        <g fill="none" fill-rule="nonzero">
+                          <path fill="#fff" d="M25 50C11.2 50 0 38.8 0 25S11.2 0 25 0s25 11.2 25 25-11.2 25-25 25z"
+                            class="base"></path>
+                          <path fill="#000" d="M35.3 25l-15.6-8.6v17.2z" class="triangle"></path>
+                        </g>
+                      </svg> </span> </button>
+                  <div class="additional-video-title text-white  " data-uia="additional-video-title">Full Film : Jejak Khilafah di
+                    Nusantara 1</div>
+                 </a>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+        </section>
       </div>
       <section class="nmtitle-section text-white mt-10" id="section-more-details" data-uia="section-more-details">
         <div class="section-header " data-uia="section-header">
@@ -110,26 +138,23 @@
         <div class="my-5 more-details-container-cast">
           <div class="more-details-cell cell-cast" data-uia="more-details-cell-cast">
             <div class="text-gray-400">Cast</div>
-            <div class="more-details-item-container grid grid-cols-1 grid-cols-3"><span class="more-details-item item-cast"
-                data-uia="more-details-item-cast">Jake Gyllenhaal</span><span class="more-details-item item-cast"
-                data-uia="more-details-item-cast">Ethan Hawke</span><span class="more-details-item item-cast"
-                data-uia="more-details-item-cast">Riley Keough</span><span class="more-details-item item-cast"
-                data-uia="more-details-item-cast">Peter Sarsgaard</span><span class="more-details-item item-cast"
-                data-uia="more-details-item-cast">Christina Vidal Mitchell</span><span
-                class="more-details-item item-cast" data-uia="more-details-item-cast">Paul Dano</span><span
-                class="more-details-item item-cast" data-uia="more-details-item-cast">Eli Goree</span><span
-                class="more-details-item item-cast" data-uia="more-details-item-cast">Da'Vine Joy Randolph</span><span
-                class="more-details-item item-cast" data-uia="more-details-item-cast">David Castañeda</span></div>
+            <div class="more-details-item-container grid grid-cols-1 grid-cols-3"><span
+                class="more-details-item item-cast" data-uia="more-details-item-cast">Jake Gyllenhaal</span><span
+                class="more-details-item item-cast" data-uia="more-details-item-cast">Ethan Hawke</span><span
+                class="more-details-item item-cast" data-uia="more-details-item-cast">Riley Keough</span><span
+                class="more-details-item item-cast" data-uia="more-details-item-cast">Peter Sarsgaard</span><span
+                class="more-details-item item-cast" data-uia="more-details-item-cast">Christina Vidal
+                Mitchell</span><span class="more-details-item item-cast" data-uia="more-details-item-cast">Paul
+                Dano</span><span class="more-details-item item-cast" data-uia="more-details-item-cast">Eli
+                Goree</span><span class="more-details-item item-cast" data-uia="more-details-item-cast">Da'Vine Joy
+                Randolph</span><span class="more-details-item item-cast" data-uia="more-details-item-cast">David
+                Castañeda</span></div>
           </div>
         </div>
       </section>
     </div>
   </div>
 
-  <script>
-    let video = document.querySelector("#video-youtube")
-    video.style.height = video.offsetWidth / 16 * 9 + 'px';
-  </script>
 </body>
 
 </html>

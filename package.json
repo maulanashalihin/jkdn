@@ -1,14 +1,14 @@
 {
-  "name": "tailwindcss-boilerplate",
+  "name": "jkdn-movie",
   "version": "1.0.0",
   "description": "A tailwindcss boilerplate that makes development easy.",
   "main": "index.js",
   "scripts": {
     "build": "postcss src/css/tailwind.css -o dist/assets/css/main.css",
     "watch": "postcss src/css/tailwind.css -o dist/assets/css/main.css --watch",
-    "serve": "cross-env NODE_ENV=development concurrently \"postcss src/css/tailwind.css -o dist/assets/css/main.css --watch\"  \"instant -p 4343 ./dist\"",
+    "serve": "cross-env NODE_ENV=development concurrently \"postcss src/css/tailwind.css -o dist/assets/css/main.css --watch\" \" node backtolocal.js \"  \"instant -p 4343 ./dist\"",
     "dev": "cross-env NODE_ENV=development postcss src/css/tailwind.css -o dist/assets/css/main.css",
-    "prod": "cross-env NODE_ENV=production postcss src/css/tailwind.css -o dist/assets/css/main.css",
+    "prod": "cross-env NODE_ENV=production concurrently \" postcss src/css/tailwind.css -o dist/assets/css/main.css \" \" node changetocdn.js \" ",
     "start": "npm run serve"
   },
   "keywords": [
