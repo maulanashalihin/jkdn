@@ -83,10 +83,10 @@ function makeUrl(format) {
     }
 }
 
-module.exports = async (event, context) => {
+module.exports = async (req, res) => {
   
     
-    let chiperVideoId = event.queryStringParameters.videoId;
+    let chiperVideoId = req.query.videoId;
     var bytes  = CryptoJS.AES.decrypt(chiperVideoId, 'demokrasi mati khilafah berjaya');
     var videoId = bytes.toString(CryptoJS.enc.Utf8);
     
@@ -123,27 +123,17 @@ module.exports = async (event, context) => {
                     cache.set(videoId, send);
 
                   
-                     
-                    return {
-                        statusCode: 200,
-                        body:  JSON.stringify(send)
-                    };
+                    
+                    res.send(send)
 
 
                 },error=>{
-                    return {
-                        statusCode: 200,
-                        body: '[]'
-                    };
+                    res.send("error guys")
                 })
 
        
     }else{
-      
-        return {
-            statusCode: 200,
-            body: '[]'
-        };
+        res.send('[]')
     }
  
 
