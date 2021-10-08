@@ -92,11 +92,7 @@ module.exports = async (req, res) => {
     
     if(videoId)
     {    
-        if(cache.has(videoId))
-        {
-            res.send(cache.get(videoId));
-        }else{
-          
+       
     
             axios.get('https://www.youtube.com/watch?v=' + videoId, {
                 headers: {
@@ -135,7 +131,7 @@ module.exports = async (req, res) => {
                     res.send("error guys")
                 })
 
-        }
+       
     }else{
         res.send('[]')
     }
