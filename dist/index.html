@@ -204,7 +204,7 @@
 <source src="${data[0].url}" type="video/mp4" size="360">	
 <source src="${data[1].url}" type="video/mp4" size="720"> 
 </video>
-<button onclick="fullscreen()" class="text-white md:hidden">Fullscreen</button>
+<div class="text-center  md:hidden hidden" id="fullscreen"><button onclick="fullscreen()" class="text-white">Tampil Fullscreen</button></div>
   </div>
 	`).show()
 
@@ -240,6 +240,16 @@ if(document.querySelector("body").offsetWidth >= 640)
   player.quality = 720
 }else{
   player = new Plyr('#player');
+  player.on('controlsshown', event => {
+    if(document.querySelector('#fullscreen'))
+    document.querySelector('#fullscreen').classList.remove("hidden");
+
+});
+player.on('controlshidden', event => {
+  document.querySelector('#fullscreen')
+    document.querySelector('#fullscreen').classList.add("hidden");
+
+});
 }
 
  
