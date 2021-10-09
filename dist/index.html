@@ -171,7 +171,7 @@
   <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
   <script type="text/javascript">
     let videoPoint = location.host == 'localhost:4343' ? 'http://localhost:22001' :
-      '/api';
+      'https://api3.ekspreswp.com';
 
 
     function openVideo(videoId) {
@@ -185,7 +185,7 @@
 
   const player = new Plyr('#player');
 
-      axios.get(videoPoint + "/video?videoId=" + videoId).then(response => {
+      axios.get(videoPoint + "/youtube?videoId=" + videoId).then(response => {
         let data = response.data;
   
      
