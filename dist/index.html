@@ -70,7 +70,7 @@
             <ul class="nm-content-horizontal-row-item-container grid gap-4 md:grid-cols-3">
               <li class="nm-content-horizontal-row-item">
                 <div class="additional-video-wrapper" data-uia="additional-video-wrapper">
-                  <a onclick="openVideo('U2FsdGVkX18f0ozxgGAE9U/94S78CumqE7F/WzG7Gmw=')" id="U2FsdGVkX18f0ozxgGAE9U/94S78CumqE7F/WzG7Gmw=" class="video">
+                  <a onclick="openVideo('U2FsdGVkX18f0ozxgGAE9U/94S78CumqE7F/WzG7Gmw=')" class="video">
                     <img src="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.6/dist/assets/imgs/bg-small.jpg" alt="">
                     <button class="additional-video"><span class="additional-video-image-wrapper" alt=""
                         role="presentation" class="additional-video-image-preloader" loading="lazy"> <svg
@@ -166,6 +166,8 @@
     let videoPoint = location.host == 'localhost:4343' ? 'http://localhost:22001' :
       'https://api3.ekspreswp.com';
 
+      
+
 
     function openVideo(videoId) {
 
@@ -186,12 +188,14 @@
     
         basicLightbox.create(`
  <div class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto  ">  
-  <video class="js-player" autoplay controls playsinline preload="none" id="player" data-plyr-config='{"volume": 0.3, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
+  <video class="js-player" autoplay  controls playsinline preload="none" id="player" data-plyr-config='{"volume": 0.3, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
 <source src="${data[1].url}" type="video/mp4" size="360">	
 <source src="${data[1].url}" type="video/mp4" size="720"> 
 </video>
   </div>
 	`).show()
+
+
  
     const player = new Plyr('#player',{
     quality : {
@@ -200,29 +204,23 @@
         }
       });
 
-        
-   
-      // player.source = { 
-      //   type: 'video',
-      //   title: 'Jejak Khilafah di Nusatara 1',
-      //   autoplay : true,  
-      //   sources: [
-      //     {
-      //       src: data[0].url,
-      //       type: 'video/mp4',
-      //       size: data[0].height,
-      //     }, 
-      //     {
-      //       src: data[1].url,
-      //       type: 'video/webm',
-      //       size: data[1].height,
-      //     },
 
-      //   ],
-      // }; 
+      player.on('controlsshown', event => {
+         let fullScreenButton = document.querySelector('[data-plyr="fullscreen"]');
+         fullScreenButton.addEventListener("click", function() {
+           const video = document.querySelector("#player")
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen(); // Firefox
+  } else if (video.webkitRequestFullscreen) {
+    video.webkitRequestFullscreen(); // Chrome and Safari
+  }
+});
 
-      // console.log(player)
+});
 
+         
      
  
       
