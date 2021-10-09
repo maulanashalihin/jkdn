@@ -185,18 +185,18 @@
       player.source = {
         type: 'video',
         title: 'Jejak Khilafah di Nusatara 1',
-        autoplay : true, 
-        "quality": { "default": data[0].height },
-        sources: [{
-            src: data[0].url,
-            type: 'video/mp4',
-            size: data[0].height,
-          },
+        autoplay : true,  
+        sources: [
           {
             src: data[1].url,
             type: 'video/webm',
             size: data[1].height,
           },
+          {
+            src: data[0].url,
+            type: 'video/mp4',
+            size: data[0].height,
+          }
 
         ],
       }; 
