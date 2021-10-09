@@ -4,27 +4,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.3/dist/assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.5/dist/assets/css/main.css" />
   <title>Jejak Khilafah di Nusantara</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
-  
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+   
 
   <style>
     .bg-image-cover {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.3/dist/assets/imgs/bg-big.jpg) no-repeat;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.5/dist/assets/imgs/bg-big.jpg) no-repeat;
  
     }
 
     @media only screen and (max-width: 1024px) {
       .bg-image-cover {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.3/dist/assets/imgs/bg-small.jpg) no-repeat center top; 
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.5/dist/assets/imgs/bg-small.jpg) no-repeat center top; 
       }
     }
 
     .basicLightbox{
       background: rgba(0,0,0,.9);
+    }
+
+    video::-webkit-media-controls-volume-slider {
+display:none;
+}
+
+video::-webkit-media-controls-mute-button {
+display:none;
+}
+
+    #quality{
+      -webkit-transition: opacity 3s ease-in;
+    -moz-transition: opacity 3s ease-in;
+    -o-transition: opacity 3s ease-in;
+    -ms-transition: opacity 3s ease-in;
+    transition: opacity 3s ease-in;
+
+    
     }
   </style>
 </head>
@@ -71,7 +88,7 @@
               <li class="nm-content-horizontal-row-item">
                 <div class="additional-video-wrapper" data-uia="additional-video-wrapper">
                   <a onclick="openVideo('U2FsdGVkX18f0ozxgGAE9U/94S78CumqE7F/WzG7Gmw=')" class="video">
-                    <img src="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.3/dist/assets/imgs/bg-small.jpg" alt="">
+                    <img src="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.5/dist/assets/imgs/bg-small.jpg" alt="">
                     <button class="additional-video"><span class="additional-video-image-wrapper" alt=""
                         role="presentation" class="additional-video-image-preloader" loading="lazy"> <svg
                           viewBox="0 0 50 50" class="  -mt-20 ml-5 h-14" data-uia="additional-video-play-icon">
@@ -160,8 +177,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
-  
-  <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+   
   <script type="text/javascript">
     let videoPoint = location.host == 'localhost:4343' ? 'http://localhost:22001' :
       'https://api3.ekspreswp.com';
@@ -171,39 +187,198 @@
 
       
  
-  basicLightbox.create(`
- <div class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto  "> <video id="player" style="z-index : 2001" width="100%" height="315" playsinline controls></video></div>
+      const first = basicLightbox.create(`
+      
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<g transform="translate(80,50)">
+<g transform="rotate(0)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="1">
+  <animateTransform attributeName="transform" type="scale" begin="-0.875s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.875s"></animate>
+</circle>
+</g>
+</g><g transform="translate(71.21320343559643,71.21320343559643)">
+<g transform="rotate(45)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.875">
+  <animateTransform attributeName="transform" type="scale" begin="-0.75s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.75s"></animate>
+</circle>
+</g>
+</g><g transform="translate(50,80)">
+<g transform="rotate(90)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.75">
+  <animateTransform attributeName="transform" type="scale" begin="-0.625s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.625s"></animate>
+</circle>
+</g>
+</g><g transform="translate(28.786796564403577,71.21320343559643)">
+<g transform="rotate(135)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.625">
+  <animateTransform attributeName="transform" type="scale" begin="-0.5s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.5s"></animate>
+</circle>
+</g>
+</g><g transform="translate(20,50.00000000000001)">
+<g transform="rotate(180)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.5">
+  <animateTransform attributeName="transform" type="scale" begin="-0.375s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.375s"></animate>
+</circle>
+</g>
+</g><g transform="translate(28.78679656440357,28.786796564403577)">
+<g transform="rotate(225)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.375">
+  <animateTransform attributeName="transform" type="scale" begin="-0.25s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.25s"></animate>
+</circle>
+</g>
+</g><g transform="translate(49.99999999999999,20)">
+<g transform="rotate(270)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.25">
+  <animateTransform attributeName="transform" type="scale" begin="-0.125s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.125s"></animate>
+</circle>
+</g>
+</g><g transform="translate(71.21320343559643,28.78679656440357)">
+<g transform="rotate(315)">
+<circle cx="0" cy="0" r="6" fill="#f7b11c" fill-opacity="0.125">
+  <animateTransform attributeName="transform" type="scale" begin="0s" values="1.5 1.5;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+  <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="0s"></animate>
+</circle>
+</g>
+</g>
+<!-- [ldio] generated by https://loading.io/ --></svg>
 	`).show()
   
 
-  const player = new Plyr('#player');
+  // const player = new Plyr('#player',{
+  //   quality : {
+  //         default: 360,
+  //         options: [  720, 360]
+  //       }
+  //     });
 
       axios.get(videoPoint + "/youtube?videoId=" + videoId).then(response => {
         let data = response.data;
-  
-     
-      player.source = {
-        type: 'video',
-        title: 'Jejak Khilafah di Nusatara 1',
-        autoplay : true,  
-        sources: [
-          {
-            src: data[1].url,
-            type: 'video/webm',
-            size: data[1].height,
-          },
-          {
-            src: data[0].url,
-            type: 'video/mp4',
-            size: data[0].height,
-          }
+        setTimeout(()=>{
+          document.querySelector(".basicLightbox--visible").remove()
+        },500)
 
-        ],
-      }; 
+        let currentQuality = 0;
+        
+        window.selectVideo = function(idx){
+          if(idx != currentQuality)
+          {
+            currentQuality = idx
+            var video = document.getElementById('player');
+            video.setAttribute("src",data[idx].url)
+            video.load();
+            video.play();
+          }
+         
+          document.querySelector("#dropdown-id").classList.toggle("hidden");
+          document.querySelector("#dropdown-id").classList.toggle("block");
+          document.querySelector("#quality button").innerHTML = data[idx].height;
+        }
+
+        window.videoHover = function(){
+          document.querySelector("#quality").classList = ''
+          // document.querySelector("#dropdown-id").classList = 'hidden'
+        }
+        window.videounHover = function(){
+          document.querySelector("#quality").classList = 'hidden' 
+         
+        }
+
+       
+        
+    
+        basicLightbox.create(`
+ <div class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto  "> 
+  
+  <video onmouseover="videoHover()" onmouseleave="videounHover()" autoplay id="player" style="z-index : 2001" width="100%" height="315" playsinline controls>
+  <source src="${data[0].url}" type="video/mp4">
+ 
+  </video>
+<div id="quality" class="hidden" onmouseover="videoHover()">
+  <div   class="flex justify-end   " style="margin-top : -70px;z-index : 1000000"  >
+    <div class="flex flex-wrap">
+  <div class="w-full sm:w-6/12 md:w-4/12 px-4">
+    <div class="relative inline-flex align-middle w-full">
+      <button class="    text-white   uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-20 mb-1  bg-blueGray-700 ease-linear transition-all duration-150" type="button" onclick="openDropdown(event,'dropdown-id')">
+        360
+      </button>
+      <div class="hidden bg-white text-black text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mb-1"  id="dropdown-id">
+        <a href="javascript:void(0)" onclick="selectVideo(1)" class="text-sm py-1 px-3 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          720
+        </a> 
+        <a href="javascript:void(0)" onclick="selectVideo(0)" class="text-sm py-1 px-3 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          360
+        </a> 
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+    </div>
+  </div>
+	`).show()
+
+    if(document.querySelector("body").offsetWidth > 1280)
+    {
+      currentQuality = 1;
+      var video = document.getElementById('player');
+          video.setAttribute("src",data[1].url)
+          video.load();
+          video.play(); 
+          if(document.querySelector("#quality button"))
+          document.querySelector("#quality button").innerHTML = data[1].height;
+    }
+ 
+        
+   
+      // player.source = { 
+      //   type: 'video',
+      //   title: 'Jejak Khilafah di Nusatara 1',
+      //   autoplay : true,  
+      //   sources: [
+      //     {
+      //       src: data[0].url,
+      //       type: 'video/mp4',
+      //       size: data[0].height,
+      //     }, 
+      //     {
+      //       src: data[1].url,
+      //       type: 'video/webm',
+      //       size: data[1].height,
+      //     },
+
+      //   ],
+      // }; 
+
+      // console.log(player)
+
+     
  
       
 
       });
+    }
+  </script>
+  <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+  <script>
+    function openDropdown(event,dropdownID){
+      let element = event.target;
+      while(element.nodeName !== "BUTTON"){
+        element = element.parentNode;
+      }
+      var popper = Popper.createPopper(element, document.getElementById(dropdownID), {
+        placement: 'top-end'
+      });
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
     }
   </script>
 
