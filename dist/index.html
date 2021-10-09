@@ -185,41 +185,59 @@
           document.querySelector(".basicLightbox--visible").remove()
         },500)
         
-    
-        basicLightbox.create(`
- <div class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto  ">  
-  <video class="js-player" autoplay  controls playsinline preload="none" id="player" data-plyr-config='{"volume": 0.3, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
-<source src="${data[1].url}" type="video/mp4" size="360">	
-<source src="${data[1].url}" type="video/mp4" size="720"> 
-</video>
-  </div>
-	`).show()
 
-
- 
-    const player = new Plyr('#player',{
-    quality : {
-          default: 360,
-          options: [  720, 360]
-        }
-      });
-
-
-      player.on('controlsshown', event => {
-         let fullScreenButton = document.querySelector('[data-plyr="fullscreen"]');
-         fullScreenButton.addEventListener("click", function() {
-           const video = document.querySelector("#player")
-  if (video.requestFullscreen) {
+        window.fullscreen = ()=>{
+          const video = document.querySelector("#player")
+          if (video.requestFullscreen) {
     video.requestFullscreen();
   } else if (video.mozRequestFullScreen) {
     video.mozRequestFullScreen(); // Firefox
   } else if (video.webkitRequestFullscreen) {
     video.webkitRequestFullscreen(); // Chrome and Safari
   }
-});
+        }
+    
+        basicLightbox.create(`
+ <div class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto  ">  
+  <video class="js-player" autoplay  controls playsinline preload="none" id="player" data-plyr-config='{"volume": 0.3, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
+<source src="${data[0].url}" type="video/mp4" size="360">	
+<source src="${data[1].url}" type="video/mp4" size="720"> 
+</video>
+<button onclick="fullscreen()" class="text-white md:hidden">Fullscreen</button>
+  </div>
+	`).show()
 
-});
 
+
+ 
+  var controls =
+[
+    'play-large', // The large play button in the center
+    'restart', // Restart playback
+    'rewind', // Rewind by the seek time (default 10 seconds)
+    'play', // Play/pause playback
+    'fast-forward', // Fast forward by the seek time (default 10 seconds)
+    'progress', // The progress bar and scrubber for playback and buffering
+    'current-time', // The current time of playback
+    'duration', // The full duration of the media
+    'mute', // Toggle mute
+    'volume', // Volume control
+    'captions', // Toggle captions
+    'settings', // Settings menu
+    'pip', // Picture-in-picture (currently Safari only)
+    'airplay', // Airplay (currently Safari only)
+    'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
+     'fullscreen'
+];
+
+var player = new Plyr('#player', { controls });
+
+if(document.querySelector("body").offsetWidth >= 1280)
+{
+  player.quality = 720
+}
+
+ 
          
      
  
