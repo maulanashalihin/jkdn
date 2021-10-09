@@ -188,6 +188,7 @@
 
         window.fullscreen = ()=>{
           const video = document.querySelector("#player")
+          video.setAttribute("controls",true)
           if (video.requestFullscreen) {
     video.requestFullscreen();
   } else if (video.mozRequestFullScreen) {
@@ -230,11 +231,15 @@
      'fullscreen'
 ];
 
-var player = new Plyr('#player', { controls });
+var player; 
 
-if(document.querySelector("body").offsetWidth >= 1280)
+if(document.querySelector("body").offsetWidth >= 640)
 {
+
+  player =  new Plyr('#player', { controls });
   player.quality = 720
+}else{
+  player = new Plyr('#player');
 }
 
  
