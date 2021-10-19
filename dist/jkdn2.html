@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.10/dist/assets/css/main.css" />
   <title>Jejak Khilafah di Nusantara</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="bg-black">
-  <div x-data="root" x-init="selectMenu('live-youtube')"
+  <div x-data="root" x-init="selectMenu('live-youtube');checkViewer()"
     class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto mt-0 xl:mt-10">
 
     <div id="video"></div>
@@ -19,7 +19,7 @@
     <div class="px-3">
       <div class="mb-6">
         <div class="">
-          <div class="text-gray-100 my-3 text-lg">100.000 penonton</div>
+          <div class="text-gray-300 my-3 text-lg" x-text="peserta"></div>
 
           <nav class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6   gap-2" aria-label="Tabs">
             <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
@@ -80,8 +80,16 @@
         time : start_at - Date.now(),
         menu: 'live-youtube',
         interval :'',
+        peserta : '0 penonton',
         current_btn: 'rounded border border-gray-100 text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
         other_btn: 'text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
+        checkViewer(){
+          axios.get(
+              "https://api3.ekspreswp.com/viewer?videoId=fda84908b3017e380d79775d8c9188da"
+            ).then(response => {
+              this.peserta = parseInt(response.data).toLocaleString('id')+' penonton'
+            });
+        },  
         selectMenu(menu) {
           this.menu = menu;
            
