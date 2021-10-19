@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <title>Jejak Khilafah di Nusantara</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body class="bg-black">
+  <div x-data="root" x-init="selectMenu('live-youtube')"
+    class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto mt-0 xl:mt-10">
+
+    <div id="video"></div>
+
+    <div class="px-3">
+      <div class="mb-6">
+        <div class="">
+          <div class="text-gray-100 my-3 text-lg">100.000 penonton</div>
+
+          <nav class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6   gap-2" aria-label="Tabs">
+            <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
+            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
+              :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
+              <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg> LIVE TALKJKDNSHOW
+            </button>
+
+
+
+            <button class="inline-flex  justify-center" @click="selectMenu('premier')"
+              :class="menu == 'premier' ? current_btn : other_btn">
+              <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg>  Film JKDN 2
+            </button>
+            <button class="inline-flex  justify-center" @click="selectMenu('premier-alt')"
+              :class="menu == 'premier-alt' ? current_btn : other_btn">
+              <svg x-show="menu == 'premier-alt'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg> Film JKDN 2 (Alternative)
+            </button>
+            <button class="inline-flex  justify-center" @click="selectMenu('live-fb')"
+              :class="menu == 'live-fb' ? current_btn : other_btn">
+              <svg x-show="menu == 'live-fb'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg> Alternative 1
+              </a>
+              <button class="inline-flex  justify-center" @click="selectMenu('live-nimo')"
+                :class="menu == 'live-nimo' ? current_btn : other_btn">
+                <svg x-show="menu == 'live-nimo'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+                  <circle cx="4" cy="4" r="3" />
+                </svg> Alternative 2
+              </button>
+          </nav>
+
+        </div>
+      </div>
+      <!-- <hr class="border-gray-400"> -->
+      <div id="disqus_thread"></div>
+    </div>
+    <div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js"
+    integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const start_at = 1634693400000
+
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('root', () => ({
+        time : start_at - Date.now(),
+        menu: 'live-youtube',
+        interval :'',
+        current_btn: 'rounded border border-gray-100 text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
+        other_btn: 'text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
+        selectMenu(menu) {
+          this.menu = menu;
+           
+          if(this.interval)
+          {
+            clearInterval(this.interval)
+          }
+     
+
+          if (menu == 'live-youtube') {
+
+            document.querySelector('#video').innerHTML =
+            `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'></video>`
+
+          const player = new Plyr('#player');
+
+            player.source = {
+              type: 'video',
+              sources: [{
+                src: 'bTqVqk7FSmY',
+                provider: 'youtube',
+              }, ],
+            };
+          }
+          if (menu == 'live-fb') {
+
+            document.querySelector('#video').innerHTML =
+              '<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fjejakkhilafahdinusantara%2Fvideos%2F177237997916507%2F&show_text=false&width=560&t=0" width="100%"   style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>'
+            document.querySelector('#video iframe').style.height = (document.querySelector('#video')
+              .offsetWidth * 9 / 16) + 'px'
+          }
+          if (menu == 'live-nimo') {
+
+            document.querySelector('#video').innerHTML =
+              `<iframe
+                src="https://www.nimo.tv/embed/40938557"
+                
+                width="100%"
+                frameborder="<frameborder>"
+                scrolling="<scrolling>"
+                allowfullscreen="<allowfullscreen>">
+            </iframe>`
+            document.querySelector('#video iframe').style.height = (document.querySelector('#video')
+              .offsetWidth * 9 / 16) + 'px'
+          }
+          if (menu == 'premier-alt') {
+
+ 
+
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da")
+          }
+          if (menu == 'premier') { 
+            this.fetchVideo("https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=fda84908b3017e380d79775d8c9188da")
+          }
+
+        },
+        showTimer(t){
+          if (t >= 0) {
+
+          let days = Math.floor(t / (1000 * 60 * 60 * 24));
+          let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+          let secs = Math.floor((t % (1000 * 60)) / 1000);
+
+          return ('0' + hours).slice(-2)+' jam : '+('0' + mins).slice(-2)+' menit : '+('0' + secs).slice(-2)+' detik'
+
+          }
+        },
+        fetchVideo(url){ 
+          if(Date.now() < start_at)
+          {
+            const height = (document.querySelector('#video')
+              .offsetWidth * 9 / 16) 
+            document.querySelector('#video').innerHTML = `<div style="height : ${height}px"" class="text-gray-200  text-center flex items-center justify-center"><div><div>Premier Film JKDN akan mulai</div><div x-text="showTimer(time)"></div></div></div>`
+            this.interval = setInterval(()=>{
+              this.time = start_at - Date.now()
+              if(this.time <= 0)
+              {
+                clearInterval(this.interval);
+                this.fetchVideo(url)
+              }
+            },1000)
+            
+              
+          }else{
+
+            document.querySelector('#video').innerHTML =
+            `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'></video>`
+
+          const player = new Plyr('#player');
+
+            axios.get(
+              url
+            ).then(response => {
+              let data = response.data;
+
+              player.source = {
+                type: 'video',
+                title: 'Jejak Khilafah di Nusatara 2',
+                sources: [{
+                    src: data[0].url,
+                    type: 'video/mp4',
+                    size: data[0].height,
+                  },
+                  {
+                    src: data[1].url,
+                    type: 'video/webm',
+                    size: data[1].height,
+                  },
+
+                ],
+              };
+
+              if (document.querySelector("body").offsetWidth >= 640) { 
+                player.quality = 720
+              }
+
+            })
+
+          }
+          
+          
+        }
+      }))
+    })
+  </script>
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://jkdn.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+  <script id="dsq-count-scr" src="//jkdn.disqus.com/count.js" async></script>
+
+
+</body>
+
+</html>
