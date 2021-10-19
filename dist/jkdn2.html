@@ -80,7 +80,7 @@
     integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    const start_at = 1634693400000
+    const start_at = 1634697900000
 
     document.addEventListener('alpine:init', () => {
       Alpine.data('root', () => ({
@@ -92,7 +92,7 @@
         other_btn: 'text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
         checkViewer(){
           axios.get(
-              "https://api3.ekspreswp.com/viewer?videoId=fda84908b3017e380d79775d8c9188da"
+              "https://api3.ekspreswp.com/viewer?videoId=jkdn2"
             ).then(response => {
               this.peserta = parseInt(response.data).toLocaleString('id')+' penonton'
             });
@@ -112,40 +112,41 @@
             `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'></video>`
 
           const player = new Plyr('#player');
-
-            player.source = {
-              type: 'video',
-              sources: [{
-                src: 'bTqVqk7FSmY',
-                provider: 'youtube',
-              }, ],
-            };
+            axios.get("https://1pzbryrqme.execute-api.ap-southeast-1.amazonaws.com/default/youtube-rotator").then(response=>{
+              player.source = {
+                type: 'video',
+                sources: [{
+                  src: response.data,
+                  provider: 'youtube',
+                }, ],
+              };
+            })
+            
           }
           if (menu == 'live-fb') {
-
-            document.querySelector('#video').innerHTML =
-              '<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fjejakkhilafahdinusantara%2Fvideos%2F177237997916507%2F&show_text=false&width=560&t=0" width="100%"   style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>'
+            axios.get("https://4497iu4vq8.execute-api.ap-southeast-1.amazonaws.com/default/fb-live").then(response=>{
+              const link = response.data;
+              document.querySelector('#video').innerHTML =
+              `<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=${link}%2F&show_text=false&width=560&t=0" width="100%" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`
             document.querySelector('#video iframe').style.height = (document.querySelector('#video')
               .offsetWidth * 9 / 16) + 'px'
+            })
+            
           }
           if (menu == 'live-nimo') {
 
             document.querySelector('#video').innerHTML =
               `<iframe
                 src="https://www.nimo.tv/embed/40938557"
-                
                 width="100%"
-                frameborder="<frameborder>"
-                scrolling="<scrolling>"
-                allowfullscreen="<allowfullscreen>">
+                frameborder="0"
+                scrolling="false"
+                allowfullscreen="true">
             </iframe>`
             document.querySelector('#video iframe').style.height = (document.querySelector('#video')
               .offsetWidth * 9 / 16) + 'px'
           }
           if (menu == 'premier-alt') {
-
- 
-
             this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da")
           }
           if (menu == 'premier') { 
