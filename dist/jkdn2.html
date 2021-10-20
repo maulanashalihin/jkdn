@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.11/dist/assets/css/main.css" />
   <title>Jejak Khilafah di Nusantara</title>
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" /> 
   <style>
     #disqus_thread a {
       color: #e0e0e0;
@@ -32,7 +31,8 @@
 </head>
 
 <body class="bg-black">
-  <div x-data="root" x-init="selectMenu('premier');checkViewer()"
+ 
+  <div   
     class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto mt-0 xl:mt-10">
 
     <div id="video"></div>
@@ -40,7 +40,7 @@
     <div class="px-3">
       <div class="mb-6">
         <div class="">
-          <div class="text-gray-300 my-3 text-lg" x-text="peserta"></div>
+          <div class="text-gray-300 my-3 text-lg" id="peserta"></div>
 
           <nav class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6   gap-2" aria-label="Tabs">
             <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
@@ -48,16 +48,16 @@
 
 
 
-            <button class="inline-flex  justify-center" @click="selectMenu('premier')"
-              :class="menu == 'premier' ? current_btn : other_btn">
-              <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+            <button class="inline-flex  justify-center" onclick="data.selectMenu(this.id)"
+              id="premier">
+              <svg   class="hidden mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
                 viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2
             </button>
-            <button class="inline-flex  justify-center" @click="selectMenu('premier-alt')"
-              :class="menu == 'premier-alt' ? current_btn : other_btn">
-              <svg x-show="menu == 'premier-alt'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+            <button class="inline-flex  justify-center text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md" onclick="data.selectMenu(this.id)"
+            id="premier-alt">
+              <svg   class="hidden mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
                 viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2 (Alternative)
@@ -69,9 +69,9 @@
                 <circle cx="4" cy="4" r="3" />
               </svg> Talkshow JDKN 2
             </button> -->
-            <button class="inline-flex  justify-center" @click="selectMenu('jkdn-1')"
-            :class="menu == 'jkdn-1' ? current_btn : other_btn">
-            <svg x-show="menu == 'jkdn-1'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+            <button  class="inline-flex  justify-center text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md"  onclick="data.selectMenu(this.id)"
+            id="jkdn-1">
+            <svg  class="hidden mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
               viewBox="0 0 8 8">
               <circle cx="4" cy="4" r="3" />
             </svg> Film JKDN 1
@@ -101,23 +101,30 @@
   <script>
     const start_at = 1634697900000
 
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('root', () => ({
+     let data = {
         time: start_at - Date.now(),
-        menu: 'live-youtube',
+        menu: 'premier',
         interval: '',
         peserta: '0x ditonton',
-        current_btn: 'rounded border border-gray-100 text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
-        other_btn: 'text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
+        current_btn: 'inline-flex  justify-center rounded border border-gray-100 text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
+        other_btn: 'inline-flex  justify-center text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
         checkViewer() {
           axios.get(
             "https://api3.ekspreswp.com/viewer?videoId=jkdn2"
           ).then(response => {
-            this.peserta = parseInt(response.data).toLocaleString('id') + 'x ditonton'
+            document.querySelector('#peserta').innerHTML = parseInt(response.data).toLocaleString('id') + 'x ditonton'
           });
         },
         selectMenu(menu) {
+     
+          document.getElementById(this.menu).className = this.other_btn;
+          document.getElementById(menu).className = this.current_btn;
+          document.querySelector(`#${this.menu} svg`).classList.add('hidden')
+          document.querySelector(`#${menu} svg`).classList.remove('hidden')
+          
           this.menu = menu;
+
+          
 
           if (this.interval) {
             clearInterval(this.interval)
@@ -233,8 +240,10 @@
 
 
         }
-      }))
-    })
+      }
+
+      data.selectMenu('premier')
+      data.checkViewer()
   </script>
 
   <script>
