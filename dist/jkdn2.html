@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.10/dist/assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.11/dist/assets/css/main.css" />
   <title>Jejak Khilafah di Nusantara</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -162,7 +162,7 @@
           }
         },
         fetchVideo(url){ 
-          if(Date.now() < start_at)
+          if(false)
           {
             const height = (document.querySelector('#video')
               .offsetWidth * 9 / 16) 
@@ -203,7 +203,15 @@
                     size: '720',
                   },
 
-                ],
+                ],tracks: [
+    {
+      kind: 'captions',
+      label: 'Indonesia',
+      srclang: 'id',
+      src: 'https://cdn.jsdelivr.net/npm/jkdn-movie@1.0.11/dist/assets/subtitle/jkdn-2.vtt',
+      default: true,
+    }
+  ],
               };
 
               if (document.querySelector("body").offsetWidth >= 640) { 
