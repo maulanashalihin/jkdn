@@ -45,12 +45,7 @@
 
           <nav class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6   gap-2" aria-label="Tabs">
             <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
-            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
-              :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
-              <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
-                <circle cx="4" cy="4" r="3" />
-              </svg> LIVE TALKJKDNSHOW
-            </button>
+         
 
 
 
@@ -66,13 +61,14 @@
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2 (Alternative)
             </button>
+            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
+            :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
+            <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3" />
+            </svg>  TALKJKDNSHOW
+          </button>
        
-              <button class="inline-flex  justify-center" @click="selectMenu('live-nimo')"
-                :class="menu == 'live-nimo' ? current_btn : other_btn">
-                <svg x-show="menu == 'live-nimo'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
-                  <circle cx="4" cy="4" r="3" />
-                </svg> Alternative 2
-              </button>
+              
           </nav>
 
         </div>
