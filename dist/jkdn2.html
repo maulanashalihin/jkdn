@@ -9,26 +9,25 @@
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
-    #disqus_thread a{
+    #disqus_thread a {
       color: #e0e0e0;
     }
-    :root {
-      --plyr-color-main : #ccac00;
-    --plyr-font-size-base	: 15px;
-    --plyr-font-size-small	:	13px;
-    --plyr-font-size-large	:	20px;
-    --plyr-font-size-xlarge	:	25px;
-    --plyr-captions-background : rgba(0, 0, 0, 0.4)
 
+    :root {
+      --plyr-color-main: #ccac00;
+      --plyr-font-size-base: 15px;
+      --plyr-font-size-small: 13px;
+      --plyr-font-size-large: 20px;
+      --plyr-font-size-xlarge: 25px;
+      --plyr-captions-background: rgba(0, 0, 0, 0.4)
     }
 
-    @media (min-width: 1280px)
-      {
-        .plyr__captions {
-    font-size: 18px;
-    font-size: var(--plyr-font-size-xlarge,25px);
-}
+    @media (min-width: 1280px) {
+      .plyr__captions {
+        font-size: 18px;
+        font-size: var(--plyr-font-size-xlarge, 25px);
       }
+    }
   </style>
 </head>
 
@@ -45,26 +44,42 @@
 
           <nav class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6   gap-2" aria-label="Tabs">
             <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
-         
 
 
-           
+
+
             <button class="inline-flex  justify-center" @click="selectMenu('premier')"
               :class="menu == 'premier' ? current_btn : other_btn">
-              <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+              <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+                viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
-              </svg>  Film JKDN 2
+              </svg> Film JKDN 2
             </button>
             <button class="inline-flex  justify-center" @click="selectMenu('premier-alt')"
               :class="menu == 'premier-alt' ? current_btn : other_btn">
-              <svg x-show="menu == 'premier-alt'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+              <svg x-show="menu == 'premier-alt'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+                viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2 (Alternative)
             </button>
-         
-        
-       
-              
+            <!-- <button class="inline-flex  justify-center" @click="selectMenu('talkshow')"
+              :class="menu == 'talkshow' ? current_btn : other_btn">
+              <svg x-show="menu == 'talkshow'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+                viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg> Talkshow JDKN 2
+            </button> -->
+            <button class="inline-flex  justify-center" @click="selectMenu('jkdn-1')"
+            :class="menu == 'jkdn-1' ? current_btn : other_btn">
+            <svg x-show="menu == 'jkdn-1'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor"
+              viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3" />
+            </svg> Film JKDN 1
+          </button>
+
+
+
+
           </nav>
 
         </div>
@@ -88,111 +103,80 @@
 
     document.addEventListener('alpine:init', () => {
       Alpine.data('root', () => ({
-        time : start_at - Date.now(),
+        time: start_at - Date.now(),
         menu: 'live-youtube',
-        interval :'',
-        peserta : '0 penonton',
+        interval: '',
+        peserta: '0 penonton',
         current_btn: 'rounded border border-gray-100 text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
         other_btn: 'text-gray-400 border border-gray-400 hover:text-gray-100 px-3 py-2 font-medium text-sm rounded-md',
-        checkViewer(){
+        checkViewer() {
           axios.get(
-              "https://api3.ekspreswp.com/viewer?videoId=jkdn2"
-            ).then(response => {
-              this.peserta = parseInt(response.data).toLocaleString('id')+' penonton'
-            });
-        },  
+            "https://api3.ekspreswp.com/viewer?videoId=jkdn2"
+          ).then(response => {
+            this.peserta = parseInt(response.data).toLocaleString('id') + ' penonton'
+          });
+        },
         selectMenu(menu) {
           this.menu = menu;
-           
-          if(this.interval)
-          {
+
+          if (this.interval) {
             clearInterval(this.interval)
           }
-     
 
-          if (menu == 'live-youtube') {
 
-            document.querySelector('#video').innerHTML =
-            `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'></video>`
 
-          const player = new Plyr('#player');
-            axios.get("https://1pzbryrqme.execute-api.ap-southeast-1.amazonaws.com/default/youtube-rotator").then(response=>{
-              player.source = {
-                type: 'video',
-                sources: [{
-                  src: response.data,
-                  provider: 'youtube',
-                }, ],
-              };
-
-              player.currentTime = 2000;
-            })
-            
-          }
-          if (menu == 'live-fb') {
-            axios.get("https://4497iu4vq8.execute-api.ap-southeast-1.amazonaws.com/default/fb-live").then(response=>{
-              const link = response.data;
-              document.querySelector('#video').innerHTML =
-              `<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=${link}%2F&show_text=false&width=560&t=0" width="100%" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`
-            document.querySelector('#video iframe').style.height = (document.querySelector('#video')
-              .offsetWidth * 9 / 16) + 'px'
-            })
-            
-          }
           if (menu == 'jkdn-1') {
-            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da")
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da",
+              false)
+          }
+
+          if (menu == 'talkshow') {
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=f6500e3d802fa12199020ffcf61e23f3",
+              false)
           }
           if (menu == 'premier-alt') {
-            this.fetchVideo("https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=34bae09f9f06b363015422519ab5a938")
+            this.fetchVideo(
+              "https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=34bae09f9f06b363015422519ab5a938",
+              true)
           }
-          if (menu == 'premier') { 
-            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=34bae09f9f06b363015422519ab5a938")
-           
+          if (menu == 'premier') {
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=34bae09f9f06b363015422519ab5a938",
+              true)
+
           }
 
         },
-        showTimer(t){
+        showTimer(t) {
           if (t >= 0) {
 
-          let days = Math.floor(t / (1000 * 60 * 60 * 24));
-          let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-          let secs = Math.floor((t % (1000 * 60)) / 1000);
+            let days = Math.floor(t / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            let secs = Math.floor((t % (1000 * 60)) / 1000);
 
-          return ('0' + hours).slice(-2)+' jam : '+('0' + mins).slice(-2)+' menit : '+('0' + secs).slice(-2)+' detik'
+            return ('0' + hours).slice(-2) + ' jam : ' + ('0' + mins).slice(-2) + ' menit : ' + ('0' + secs)
+              .slice(-2) + ' detik'
 
           }
         },
-        fetchVideo(url){ 
-          if(false)
-          {
-            const height = (document.querySelector('#video')
-              .offsetWidth * 9 / 16) 
-            document.querySelector('#video').innerHTML = `<div style="height : ${height}px"" class="text-gray-200  text-center flex items-center justify-center"><div><div>Premier Film JKDN akan mulai</div><div>20 Oktober 2021 Jam 09.45 WIB</div><div x-text="showTimer(time)"></div></div></div>`
-            this.interval = setInterval(()=>{
-              this.time = start_at - Date.now()
-              if(this.time <= 0)
-              {
-                clearInterval(this.interval);
-                this.fetchVideo(url)
-              }
-            },1000)
-            
-              
-          }else{
+        fetchVideo(url, hasSub) {
 
-            document.querySelector('#video').innerHTML =
+ 
+          document.querySelector('#video').innerHTML =
             `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
             
               </video>`
 
           const player = new Plyr('#player');
 
-            axios.get(
-              url
-            ).then(response => {
-              let data = response.data;
-            
+          axios.get(
+            url
+          ).then(response => {
+            let data = response.data;
+
+
+
+            if (hasSub) {
               player.source = {
                 type: 'video',
                 title: 'Jejak Khilafah di Nusatara 2',
@@ -208,31 +192,46 @@
                   },
 
                 ],
-              
-                tracks: [
-    {
-      kind: 'captions',
-      label: 'Indonesia',
-      srclang: 'id',
-      src: '/assets/subtitle/jkdn-2.vtt',
-      default: true,
-    }
-  ],
+
+                tracks: [{
+                  kind: 'captions',
+                  label: 'Indonesia',
+                  srclang: 'id',
+                  src: '/assets/subtitle/jkdn-2.vtt',
+                  default: true,
+                }],
               };
-             setTimeout(()=>{
-              player.toggleCaptions(true)
-             },1000)
- 
+              setTimeout(() => {
+                player.toggleCaptions(true)
+              }, 1000)
+            } else {
+              player.source = {
+                type: 'video',
+                title: 'Jejak Khilafah di Nusatara 2',
+                sources: [{
+                    src: data[0].url,
+                    type: 'video/mp4',
+                    size: '360',
+                  },
+                  {
+                    src: data[1].url,
+                    type: 'video/webm',
+                    size: '720',
+                  },
 
-              if (document.querySelector("body").offsetWidth >= 640) { 
-                player.quality = 720
-              }
+                ]
+              };
+            }
 
-            })
 
-          }
-          
-          
+            if (document.querySelector("body").offsetWidth >= 640) {
+              player.quality = 720
+            }
+
+          })
+
+
+
         }
       }))
     })
@@ -261,14 +260,17 @@
   <script id="dsq-count-scr" src="//jkdn.disqus.com/count.js" async></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36453525-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36453525-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-36453525-4');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-36453525-4');
+  </script>
 
 
 </body>
