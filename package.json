@@ -1,6 +1,6 @@
 {
   "name": "jkdn-movie",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A tailwindcss boilerplate that makes development easy.",
   "main": "index.js",
   "scripts": {
