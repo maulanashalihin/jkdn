@@ -17,10 +17,18 @@
     --plyr-font-size-base	: 15px;
     --plyr-font-size-small	:	13px;
     --plyr-font-size-large	:	20px;
-    --plyr-font-size-xlarge	:	27px;
+    --plyr-font-size-xlarge	:	25px;
     --plyr-captions-background : rgba(0, 0, 0, 0.4)
 
     }
+
+    @media (min-width: 1280px)
+      {
+        .plyr__captions {
+    font-size: 18px;
+    font-size: var(--plyr-font-size-xlarge,25px);
+}
+      }
   </style>
 </head>
 
