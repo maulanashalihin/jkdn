@@ -147,10 +147,10 @@
               .offsetWidth * 9 / 16) + 'px'
           }
           if (menu == 'premier-alt') {
-            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da")
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=34bae09f9f06b363015422519ab5a938")
           }
           if (menu == 'premier') { 
-            this.fetchVideo("https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=fda84908b3017e380d79775d8c9188da")
+            this.fetchVideo("https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=34bae09f9f06b363015422519ab5a938")
           }
 
         },
@@ -200,12 +200,12 @@
                 sources: [{
                     src: data[0].url,
                     type: 'video/mp4',
-                    size: data[0].height,
+                    size: '360',
                   },
                   {
                     src: data[1].url,
                     type: 'video/webm',
-                    size: data[1].height,
+                    size: '720',
                   },
 
                 ],
