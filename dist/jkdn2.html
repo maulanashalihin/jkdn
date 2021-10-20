@@ -166,7 +166,7 @@
           {
             const height = (document.querySelector('#video')
               .offsetWidth * 9 / 16) 
-            document.querySelector('#video').innerHTML = `<div style="height : ${height}px"" class="text-gray-200  text-center flex items-center justify-center"><div><div>Premier Film JKDN akan mulai</div><div x-text="showTimer(time)"></div></div></div>`
+            document.querySelector('#video').innerHTML = `<div style="height : ${height}px"" class="text-gray-200  text-center flex items-center justify-center"><div><div>Premier Film JKDN akan mulai</div><div>20 Oktober 2021 Jam 09.45 WIB</div><div x-text="showTimer(time)"></div></div></div>`
             this.interval = setInterval(()=>{
               this.time = start_at - Date.now()
               if(this.time <= 0)
