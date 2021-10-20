@@ -181,7 +181,9 @@
           }else{
 
             document.querySelector('#video').innerHTML =
-            `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'></video>`
+            `<video autoplay id="player" width="100%" height="315" playsinline controls  data-plyr-config='{"volume": 0.7, "resetOnEnd": true, "enabled": true, "storage": { "enabled": false }, "quality": { "default": 360 } }'>
+            
+              </video>`
 
           const player = new Plyr('#player');
 
@@ -189,7 +191,7 @@
               url
             ).then(response => {
               let data = response.data;
-
+            
               player.source = {
                 type: 'video',
                 title: 'Jejak Khilafah di Nusatara 2',
@@ -204,7 +206,9 @@
                     size: '720',
                   },
 
-                ],tracks: [
+                ],
+              
+                tracks: [
     {
       kind: 'captions',
       label: 'Indonesia',
@@ -214,6 +218,10 @@
     }
   ],
               };
+             setTimeout(()=>{
+              player.toggleCaptions(true)
+             },1000)
+ 
 
               if (document.querySelector("body").offsetWidth >= 640) { 
                 player.quality = 720
