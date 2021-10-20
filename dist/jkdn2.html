@@ -48,7 +48,12 @@
          
 
 
-
+            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
+            :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
+            <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3" />
+            </svg>  TALKJKDNSHOW
+          </button>
             <button class="inline-flex  justify-center" @click="selectMenu('premier')"
               :class="menu == 'premier' ? current_btn : other_btn">
               <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
@@ -61,12 +66,7 @@
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2 (Alternative)
             </button>
-            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
-            :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
-            <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
-              <circle cx="4" cy="4" r="3" />
-            </svg>  TALKJKDNSHOW
-          </button>
+        
        
               
           </nav>
