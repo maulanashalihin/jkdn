@@ -33,7 +33,7 @@
 </head>
 
 <body class="bg-black">
-  <div x-data="root" x-init="selectMenu('live-youtube');checkViewer()"
+  <div x-data="root" x-init="selectMenu('premier');checkViewer()"
     class="xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto mt-0 xl:mt-10">
 
     <div id="video"></div>
@@ -48,12 +48,7 @@
          
 
 
-            <button class="inline-flex justify-center" @click="selectMenu('live-youtube')"
-            :class="menu == 'live-youtube' ? current_btn : other_btn" aria-current="page">
-            <svg x-show="menu == 'live-youtube'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
-              <circle cx="4" cy="4" r="3" />
-            </svg>  TALKJKDNSHOW
-          </button>
+           
             <button class="inline-flex  justify-center" @click="selectMenu('premier')"
               :class="menu == 'premier' ? current_btn : other_btn">
               <svg x-show="menu == 'premier'" class="mt-0.5 mr-2 h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 8 8">
@@ -66,6 +61,7 @@
                 <circle cx="4" cy="4" r="3" />
               </svg> Film JKDN 2 (Alternative)
             </button>
+         
         
        
               
@@ -128,6 +124,8 @@
                   provider: 'youtube',
                 }, ],
               };
+
+              player.currentTime = 2000;
             })
             
           }
@@ -141,18 +139,8 @@
             })
             
           }
-          if (menu == 'live-nimo') {
-
-            document.querySelector('#video').innerHTML =
-              `<iframe
-                src="https://www.nimo.tv/embed/40938557"
-                width="100%"
-                frameborder="0"
-                scrolling="false"
-                allowfullscreen="true">
-            </iframe>`
-            document.querySelector('#video iframe').style.height = (document.querySelector('#video')
-              .offsetWidth * 9 / 16) + 'px'
+          if (menu == 'jkdn-1') {
+            this.fetchVideo("https://api3.ekspreswp.com/youtube?videoId=fda84908b3017e380d79775d8c9188da")
           }
           if (menu == 'premier-alt') {
             this.fetchVideo("https://asia-east2-dripid-ad0e1.cloudfunctions.net/video-1?videoId=34bae09f9f06b363015422519ab5a938")
