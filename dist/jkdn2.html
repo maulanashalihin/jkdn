@@ -324,7 +324,14 @@
             };
             setTimeout(() => {
               player.toggleCaptions(true)
+              
             }, 1000)
+            setTimeout(()=>{
+             if(!player.playing)
+             {
+              this.fetchVideo(url, hasSub)
+             }
+            },10000)
           } else {
             player.source = {
               type: 'video',
