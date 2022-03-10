@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^10.1.0",
-    "axios": "^0.22.0",
+    "axios": "^0.26.1",
     "crypto-js": "^4.1.1",
     "querystring": "^0.2.1",
     "tailwindcss": "^2.0.2",
