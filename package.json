@@ -27,7 +27,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@vercel/node": "^1.12.1",
+    "@vercel/node": "^2.9.1",
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.2",
